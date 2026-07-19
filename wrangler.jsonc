@@ -1,0 +1,44 @@
+{
+  "name": "kotodama-s3s4nk3n",
+  "main": "svelte/.svelte-kit/cloudflare/_worker.js",
+  "compatibility_date": "2025-03-17",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "nodejs_als"
+  ],
+  "vars": {
+    "APP_CAPABILITIES": "null",
+    "APP_DESCRIPTION": "SES案件・状況管理パイプライン。メールから案件を自動抽出し状況を追跡する。",
+    "APP_DISPLAY_NAME": "SES案件",
+    "APP_FRAMEWORK": "sveltekit-edge-bff",
+    "APP_NANOID": "s3s4nk3n",
+    "APP_PERFORMER_TYPE": "",
+    "APP_UI_TYPE": "none",
+    "AGENTGATEWAY_MCP_ROUTER_URL": "https://mcp.etzhayyim.com/xrpc/com.etzhayyim.mcp.message",
+    "SES_MCP_URL": "https://ses-api.etzhayyim.com"
+  },
+  "rules": [
+    {
+      "type": "CompiledWasm",
+      "globs": [
+        "**/*.wasm"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "s3s4nk3n.etzhayyim.com/*",
+      "zone_name": "etzhayyim.com"
+    },
+    {
+      "pattern": "ses.etzhayyim.com/*",
+      "zone_name": "etzhayyim.com"
+    }
+  ],
+  "assets": {
+    "directory": "./svelte/.svelte-kit/cloudflare/client",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  }
+}

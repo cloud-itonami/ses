@@ -1,0 +1,54 @@
+{
+  "@context": "https://etzhayyim.com/ns/kotodama/v1",
+  "name": "etzhayyim-project-ses",
+  "performerType": "service",
+  "nanoid": "s3s4nk3n",
+  "displayName": "SES案件",
+  "description": "SES (システムエンジニアリングサービス) の案件・状況を email / 手動 ingest → LLM 抽出 → graph 化する業務 pipeline。",
+  "did": "did:web:ses.etzhayyim.com",
+  "tier": "T3",
+  "uiType": "none",
+  "routes": [
+    {
+      "host": "ses.etzhayyim.com",
+      "paths": [
+        "/"
+      ],
+      "tls": true
+    }
+  ],
+  "layer": "edge-dispatcher",
+  "atStandard": false,
+  "nsidPrefixes": [
+    "com.etzhayyim.apps.ses"
+  ],
+  "backendDependencies": {
+    "atproto": "https://atproto.etzhayyim.com",
+    "authn": "https://authn.etzhayyim.com",
+    "bpmnDispatcher": "https://dispatcher.etzhayyim.com",
+    "langgraphServer": "in-cluster: ses-langgraph.mitama-udf.svc.cluster.local:8000"
+  },
+  "profile": {
+    "displayName": "SES案件",
+    "description": "SES案件・状況管理パイプライン。メールから案件を自動抽出し状況を追跡する。",
+    "avatar": "SES",
+    "category": "infrastructure",
+    "country": "jpn",
+    "operator": "etzhayyim",
+    "isBot": true,
+    "agentType": "reactive"
+  },
+  "adr": [
+    "2605120000",
+    "2605080600",
+    "2605080000",
+    "2605080200",
+    "2605080300",
+    "2605111200",
+    "0041",
+    "0095",
+    "0018",
+    "2604282300",
+    "2604251830"
+  ]
+}
