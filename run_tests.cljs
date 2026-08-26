@@ -1,0 +1,22 @@
+#!/usr/bin/env nbb
+;; run_tests.cljs — ses の面契約検査。
+;;
+;;   nbb --classpath test run_tests.cljs
+;;
+;; ses は L3 dispatcher で、この repo の実体は『複数の面が同じ actor について
+;; 同じ安全境界を言っている』という合意である。依存ゼロの nbb + cljs.test で
+;; CLAUDE.md の CRITICAL Forbidden Patterns を毎回確かめる。
+
+(ns run-tests
+  (:require [clojure.test :as t]
+            [ses.contract-test]))
+
+(def green-marker "ses contract: all green")
+
+(defmethod t/report [:cljs.test/default :end-run-tests] [m]
+  (if (t/successful? m)
+    (println (str "\n" green-marker))
+    (do (println "\nses contract: FAILED")
+        (js/process.exit 1))))
+
+(t/run-tests 'ses.contract-test)
