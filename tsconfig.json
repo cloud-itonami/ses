@@ -3,7 +3,11 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "lib": ["ES2022", "WebWorker"],
+    // No "WebWorker": @cloudflare/workers-types supplies the runtime globals.
+    // Listing both makes TS pick lib.webworker's Headers / URLSearchParams,
+    // which lack entries() unless "WebWorker.Iterable" is also listed — that
+    // was the cause of the two TS2339 errors this repo shipped with.
+    "lib": ["ES2022"],
     "types": ["@cloudflare/workers-types"],
     "strict": true,
     "noUncheckedIndexedAccess": true,

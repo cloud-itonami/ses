@@ -1,0 +1,4 @@
+node_modules/
+package-lock.json
+svelte/.svelte-kit/
+svelte/.wrangler/
