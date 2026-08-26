@@ -5,11 +5,11 @@
   "type": "module",
   "main": "src/app.ts",
   "scripts": {
+    "typecheck": "tsc --noEmit",
     "deploy": "etzhayyim deploy --no-svelte",
     "smoke": "curl -s https://ses.etzhayyim.com/health"
   },
   "dependencies": {
-    "@etzhayyim/kotodama-host-sdk": "workspace:*",
     "hono": "^4.6.0"
   },
   "devDependencies": {
