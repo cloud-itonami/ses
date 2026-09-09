@@ -22,7 +22,7 @@
 
   抽出の床: 各抽出は見つからなければ throw する。『抽出できなかった』が
   『合意している』と同じ顔をしてはならない。"
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [clojure.test :refer [deftest is testing]]
             ["fs" :as fs]))
 
@@ -91,7 +91,7 @@
 
 (deftest worker-has-no-hyperdrive-binding
   (testing "wrangler.jsonc に hyperdrive / d1 / sql 系 binding が無い（ADR-2605111200）"
-    (let [raw (str/lower-case (slurp-file "wrangler.jsonc"))]
+    (let [raw (str/lower (slurp-file "wrangler.jsonc"))]
       (is (not (str/includes? raw "hyperdrive"))
           "HYPERDRIVE binding が wrangler に在る — CF Worker が DB に直接触れる")
       (is (not (str/includes? raw "d1_databases"))
