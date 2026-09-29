@@ -10,13 +10,13 @@
     wrangler.jsonc         配備（routes / vars —— HYPERDRIVE 無し）
     kotodama.jsonld        actor identity（DID / nanoid / nsidPrefixes）
     package.json           version
-    CLAUDE.md              CRITICAL Forbidden Patterns と jokyo 状態機械
+    AGENTS.md              CRITICAL Forbidden Patterns と jokyo 状態機械
 
   どの面も他を import していないので、片方だけ直した drift は throw しない
   —— identity 文書と worker が別の DID を名乗っても、配備は成功し、
   did:web を解決した相手と実際に喋る相手が別人になって初めて分かる。
 
-  **CRITICAL をここが見る理由。** CLAUDE.md は HYPERDRIVE 禁止・NSID guard・
+  **CRITICAL をここが見る理由。** AGENTS.md は HYPERDRIVE 禁止・NSID guard・
   Bearer auth・non-federable・append-only jokyo を **MUST** と書いているが、
   それを強制するコードは散文とコメント以外には無かった。散文は配備を止めない。
 
@@ -54,7 +54,7 @@
 
 (def app-ts (delay (slurp-file "src/app.ts")))
 (def dispatcher-ts (delay (slurp-file "src/dispatcher.ts")))
-(def claude-md (delay (slurp-file "CLAUDE.md")))
+(def claude-md (delay (slurp-file "AGENTS.md")))
 (def kotodama (delay (read-json "kotodama.jsonld")))
 (def wrangler (delay (read-jsonc "wrangler.jsonc")))
 (def pkg (delay (read-json "package.json")))
@@ -105,7 +105,7 @@
         "federable: false が無い — AT Repo へ漏れる前提で読まれる")
     (is (re-find #"hyperdrive: false" @app-ts)
         "hyperdrive: false が無い — DB binding があると誤解される"))
-  (testing "CLAUDE.md も Non-federable と HYPERDRIVE 禁止を名乗っている"
+  (testing "AGENTS.md も Non-federable と HYPERDRIVE 禁止を名乗っている"
     (is (str/includes? @claude-md "Non-federable"))
     (is (re-find #"No HYPERDRIVE" @claude-md))))
 
@@ -131,22 +131,22 @@
           (str "public path " p " が auth 除外リストから消えている")))))
 
 (deftest jokyo-state-machine-values-are-fixed
-  (testing "/_app/meta の jokyoValues は CLAUDE.md の 7 状態と一致"
+  (testing "/_app/meta の jokyoValues は AGENTS.md の 7 状態と一致"
     (is (= expected-jokyo (:jokyo-values @worker))
-        "jokyoValues が CLAUDE.md の状態機械と食い違う — LangGraph 側と meta が別の語彙になる"))
-  (testing "CLAUDE.md が 7 状態を列挙している"
+        "jokyoValues が AGENTS.md の状態機械と食い違う — LangGraph 側と meta が別の語彙になる"))
+  (testing "AGENTS.md が 7 状態を列挙している"
     (doseq [s expected-jokyo]
       (is (str/includes? @claude-md s)
-          (str "CLAUDE.md に jokyo 状態 " s " が無い")))))
+          (str "AGENTS.md に jokyo 状態 " s " が無い")))))
 
 (deftest documented-xrpc-surfaces-agree
   (testing "app.ts ヘッダコメントと /_app/meta surfaces が同じ 6 本"
     (is (= expected-surfaces (:surfaces @worker))
         "documented surfaces が 6 本の SES lexicon と一致しない"))
-  (testing "CLAUDE.md の NSID 表が 6 lexicon を名乗っている"
+  (testing "AGENTS.md の NSID 表が 6 lexicon を名乗っている"
     (doseq [ns ["ingestAnken" "updateJokyo" "getAnken" "listAnken" "listJokyo" "coverage"]]
       (is (str/includes? @claude-md (str "com.etzhayyim.apps.ses." ns))
-          (str "CLAUDE.md に lexicon " ns " が無い")))))
+          (str "AGENTS.md に lexicon " ns " が無い")))))
 
 (deftest actor-identity-agrees-across-surfaces
   (testing "DID: kotodama == worker root == meta fallback"

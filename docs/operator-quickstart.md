@@ -175,7 +175,7 @@ repo and not on the west manifest. A direct `wrangler deploy` would publish the
 step-3 artifact to `ses.etzhayyim.com/*` and `s3s4nk3n.etzhayyim.com/*`.
 
 Do not, yet. The artifact exposes two XRPC surfaces that authenticate nobody
-(see the table in [../README.md](../README.md)), and the surface `CLAUDE.md`
+(see the table in [../README.md](../README.md)), and the surface `AGENTS.md`
 documents — the `src/app.ts` Hono dispatcher, the only one that asks for a
 `Bearer` token at all — is not the one that would ship. Settle which surface is
 authoritative first.

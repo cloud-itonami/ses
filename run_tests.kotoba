@@ -5,7 +5,7 @@
 ;;
 ;; ses は L3 dispatcher で、この repo の実体は『複数の面が同じ actor について
 ;; 同じ安全境界を言っている』という合意である。依存ゼロの nbb + cljs.test で
-;; CLAUDE.md の CRITICAL Forbidden Patterns を毎回確かめる。
+;; AGENTS.md の CRITICAL Forbidden Patterns を毎回確かめる。
 
 (ns run-tests
   (:require [clojure.test :as t]

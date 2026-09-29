@@ -27,12 +27,12 @@ no answer. Nothing here is serving traffic, and nothing it would call is
 reachable. `npm run smoke` — which curls `https://ses.etzhayyim.com/health` —
 cannot succeed today.
 
-**`CLAUDE.md` describes the monorepo, not this repo.** It points at
+**`AGENTS.md` describes the monorepo, not this repo.** It points at
 `60-apps/etzhayyim-project-ses/src/app.ts`, `00-contracts/lexicons/…`,
 `40-engine/kotoba/crates/kotoba-kotodama/py/…` and `50-infra/vultr/…`. Only the
 first has a counterpart here (as `src/app.ts`); the lexicon JSONs, the Python
 LangGraph package and the Helm chart were **not** part of the extraction. Read
-`CLAUDE.md` as design intent inherited from upstream, not as a map of this
+`AGENTS.md` as design intent inherited from upstream, not as a map of this
 tree. Same for `lg/Dockerfile`, whose build needs
 `--build-context py=../../../40-engine/…` — a path outside this repo.
 
@@ -47,7 +47,7 @@ documented one.** This is the finding most likely to mislead you:
 
 `wrangler.jsonc` sets `main` to `svelte/.svelte-kit/cloudflare/_worker.js`.
 **`src/app.ts` is therefore not on the deployment path at all** — a deploy from
-this repo ships rows 2 and 3, and `CLAUDE.md` documents only row 1. Whichever
+this repo ships rows 2 and 3, and `AGENTS.md` documents only row 1. Whichever
 row survives, the auth story has to be settled before anything is served: two
 of the three surfaces gate nothing, and the third gates on a token it does not
 check. Nothing is exposed today only because no DNS points here.
